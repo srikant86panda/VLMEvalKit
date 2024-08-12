@@ -84,8 +84,12 @@ def dynamic_preprocess(image, min_num=1, max_num=6, image_size=448, use_thumbnai
     return processed_images
 
 
-def load_image(image_file, input_size=448, max_num=6, upscale=False):
+def load_image(image_file, transform=None, input_size=448, max_num=6, upscale=False):
     image = Image.open(image_file).convert('RGB')
+    if transform:
+        augmented_image_np = transform(image=np.array(image))['image']
+        image = Image.fromarray(augmented_image_np)
+
     if upscale:
         image = image.resize((image.width * 2, image.height * 2), Image.BILINEAR)
     transform = build_transform(input_size=input_size)
@@ -250,10 +254,14 @@ class InternVLChat(BaseModel):
         else:
             self.max_num = 6
 
-    def generate_v1_2(self, message, dataset=None):
+    def generate_v1_2(self, message, dataset=None, transform=None):
         self.INTERLEAVE = False
         prompt, image_path = self.message_to_promptimg(message, dataset=dataset)
         image = Image.open(image_path).convert('RGB')
+        if transform:
+            augmented_image_np = transform(image=np.array(image))['image']
+            image = Image.fromarray(augmented_image_np)
+
         image = image.resize((self.image_size, self.image_size))
         image_processor = CLIPImageProcessor.from_pretrained(self.model_path)
         pixel_values = image_processor(images=image, return_tensors='pt').pixel_values
@@ -263,22 +271,22 @@ class InternVLChat(BaseModel):
                                        question=prompt, generation_config=self.kwargs)
         return response
 
-    def generate_v1_5(self, message, dataset=None):
+    def generate_v1_5(self, message, dataset=None, transform=None):
         image_num = len([x for x in message if x['type'] == 'image'])
         prompt = '\n'.join([x['value'] for x in message if x['type'] == 'text'])
 
-        if listinstr(['Video'], dataset):
+        if dataset is not None and listinstr(['Video'], dataset):
             prompt = self.build_video_prompt(prompt, dataset)
 
         if image_num > 1:
             image_path = [x['value'] for x in message if x['type'] == 'image']
             pixel_values_list = []
             for file_name in image_path:
-                pixel_values_list.append(load_image(file_name, max_num=self.max_num).cuda().to(torch.bfloat16))
+                pixel_values_list.append(load_image(file_name, transform=transform, max_num=self.max_num).cuda().to(torch.bfloat16))
             pixel_values = torch.cat(pixel_values_list, dim=0)
         elif image_num == 1:
             image_path = [x['value'] for x in message if x['type'] == 'image'][0]
-            pixel_values = load_image(image_path, max_num=self.max_num).cuda().to(torch.bfloat16)
+            pixel_values = load_image(image_path, transform=transform, max_num=self.max_num).cuda().to(torch.bfloat16)
         else:
             pixel_values = None
         with torch.no_grad():
@@ -290,7 +298,7 @@ class InternVLChat(BaseModel):
                 verbose=False)
         return response
 
-    def generate_v2(self, message, dataset=None):
+    def generate_v2(self, message, dataset=None, transform=None):
         image_num = len([x for x in message if x['type'] == 'image'])
         if image_num == 1:
             prompt = '<image>\n' + '\n'.join([x['value'] for x in message if x['type'] == 'text'])
@@ -304,8 +312,8 @@ class InternVLChat(BaseModel):
                     image_idx += 1
             prompt = ' '.join([f'<image-{i + 1}>: <image>' for i in range(image_num)]) + '\n' + prompt
 
-        if listinstr(['Video'], dataset):
-            prompt = self.build_video_prompt(prompt, dataset)
+        if dataset is not None and listinstr(['Video'], dataset):
+                prompt = self.build_video_prompt(prompt, dataset)
 
         if image_num > 1:
             image_path = [x['value'] for x in message if x['type'] == 'image']
@@ -314,15 +322,15 @@ class InternVLChat(BaseModel):
             for image_idx, file_name in enumerate(image_path):
                 upscale_flag = image_idx == 0 and dataset is not None and listinstr(['MMMU_DEV_VAL'], dataset)
                 curr_pixel_values = load_image(
-                    file_name, max_num=self.max_num, upscale=upscale_flag).cuda().to(torch.bfloat16)
+                    file_name, transform=transform, max_num=self.max_num, upscale=upscale_flag).cuda().to(torch.bfloat16)
                 num_patches_list.append(curr_pixel_values.size(0))
                 pixel_values_list.append(curr_pixel_values)
             pixel_values = torch.cat(pixel_values_list, dim=0)
         elif image_num == 1:
             image_path = [x['value'] for x in message if x['type'] == 'image'][0]
-            upscale_flag = listinstr(['MMMU_DEV_VAL'], dataset)
+            upscale_flag = dataset is not None and listinstr(['MMMU_DEV_VAL'], dataset)
             pixel_values = load_image(
-                image_path, max_num=self.max_num, upscale=upscale_flag).cuda().to(torch.bfloat16)
+                image_path, transform=transform, max_num=self.max_num, upscale=upscale_flag).cuda().to(torch.bfloat16)
             num_patches_list = [pixel_values.size(0)]
         else:
             pixel_values = None
@@ -339,14 +347,14 @@ class InternVLChat(BaseModel):
             )
         return response
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         self.set_max_num(dataset)
         print(f'InternVL model version: {self.version}')
         if self.version in ['V1.1', 'V1.2']:
-            return self.generate_v1_2(message, dataset)
+            return self.generate_v1_2(message, dataset, transform)
         elif self.version == 'V1.5':
-            return self.generate_v1_5(message, dataset)
+            return self.generate_v1_5(message, dataset, transform)
         elif self.version == 'V2.0':
-            return self.generate_v2(message, dataset)
+            return self.generate_v2(message, dataset, transform)
         else:
             raise ValueError(f'Unsupported version: {self.version}')

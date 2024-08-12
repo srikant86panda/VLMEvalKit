@@ -188,13 +188,16 @@ class LLaVA_XTuner(BaseModel):
         message.extend([dict(type='image', value=s) for s in tgt_path])
         return message
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         from xtuner.dataset.utils import expand2square
         from xtuner.model.utils import prepare_inputs_labels_for_multimodal
         from xtuner.utils import DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX
         prompt, image_path = self.message_to_promptimg(message, dataset=dataset)
         prompt = prompt.replace('<image>', '')
         image = Image.open(image_path).convert('RGB')
+        if transform:
+            augmented_image_np = transform(image=np.array(image))['image']
+            image = Image.fromarray(augmented_image_np)
         image = expand2square(
             image,
             tuple(int(x * 255) for x in self.image_processor.image_mean))

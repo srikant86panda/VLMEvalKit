@@ -143,7 +143,7 @@ class LLaVA(BaseModel):
         output = self.tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
         return output
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         from llava.mm_utils import process_images, tokenizer_image_token, KeywordsStoppingCriteria
         from llava.constants import IMAGE_TOKEN_INDEX
 
@@ -294,7 +294,7 @@ class LLaVA_Next(BaseModel):
         message.append(dict(type='text', value=prompt))
         return message
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None,transform=None):
         content, images = [], []
         for msg in message:
             if msg['type'] == 'text':
@@ -348,13 +348,17 @@ class LLaVA_Next2(BaseModel):
         self.image_processor = image_processor
         self.tokenizer_image_token = tokenizer_image_token
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         content, images = '', []
         for msg in message:
             if msg['type'] == 'text':
                 content += msg['value']
             else:
-                images.append(Image.open(msg['value']).convert('RGB'))
+                image = Image.open(msg['value']).convert('RGB')
+                if transform:
+                    augmented_image_np = transform(image=np.array(image))['image']
+                    image = Image.fromarray(augmented_image_np)
+                images.append(image)
                 content += (self.DEFAULT_IMAGE_TOKEN + '\n')
 
         preprocess = self.image_processor.preprocess

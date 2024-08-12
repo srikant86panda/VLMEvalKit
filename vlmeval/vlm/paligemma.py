@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageFilter
 import torch
 
 from .base import BaseModel
@@ -25,9 +25,12 @@ class PaliGemma(BaseModel):
         self.processor = AutoProcessor.from_pretrained(model_path)
         self.kwargs = kwargs
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         prompt, image_path = self.message_to_promptimg(message, dataset=dataset)
         image = Image.open(image_path).convert('RGB')
+        if transform:
+            augmented_image_np = transform(image=np.array(image))['image']
+            image = Image.fromarray(augmented_image_np)
 
         model_inputs = self.processor(
             text=prompt, images=image, return_tensors='pt'

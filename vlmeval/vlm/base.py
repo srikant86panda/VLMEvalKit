@@ -97,7 +97,7 @@ class BaseModel:
         else:
             return None
 
-    def generate(self, message, dataset=None):
+    def generate(self, message, dataset=None, transform=None):
         """Generate the output message.
 
         Args:
@@ -112,7 +112,7 @@ class BaseModel:
         assert message is not None and self.check_content(message) == 'listdict'
         for item in message:
             assert item['type'] in self.allowed_types, f'Invalid input type: {item["type"]}'
-        return self.generate_inner(message, dataset)
+        return self.generate_inner(message, dataset, transform)
 
     def chat(self, messages, dataset=None):
         """The main function for multi-turn chatting. Will call `chat_inner` with the preprocessed input messages."""
@@ -146,7 +146,7 @@ class BaseModel:
             prompt = '\n'.join([x['value'] for x in message if x['type'] == 'text'])
             images = [x['value'] for x in message if x['type'] == 'image']
             if 'BLINK' == dataset:
-                image = concat_images_vlmeval(images, target_size=512)
+                image = concat_images(images, target_size=512)
             else:
                 image = images[0]
         return prompt, image

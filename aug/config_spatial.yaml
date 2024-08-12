@@ -1,0 +1,61 @@
+augmentations:
+- name: Affine
+  params:
+    p: 1
+- name: CoarseDropout
+  params:
+    p: 1
+- name: D4
+  params:
+    p: 1
+- name: ElasticTransform
+  params:
+    p: 1
+- name: Flip
+  params:
+    p: 1
+- name: GridDistortion
+  params:
+    p: 1
+- name: GridDropout
+  params:
+    p: 1
+- name: HorizontalFlip
+  params:
+    p: 1
+- name: Lambda
+  params:
+    p: 1
+- name: Morphological
+  params:
+    p: 1
+- name: OpticalDistortion
+  params:
+    p: 1
+- name: Perspective
+  params:
+    p: 1
+- name: PiecewiseAffine
+  params:
+    p: 1
+- name: PixelDropout
+  params:
+    p: 1
+- name: RandomGridShuffle
+  params:
+    p: 1
+- name: RandomRotate90
+  params:
+    p: 1
+- name: Rotate
+  params:
+    p: 1
+- name: SafeRotate
+  params:
+    p: 1
+- name: Transpose
+  params:
+    p: 1
+- name: VerticalFlip
+  params:
+    p: 1

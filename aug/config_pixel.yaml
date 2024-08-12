@@ -1,0 +1,142 @@
+augmentations:
+  - name: AdvancedBlur
+    params:
+      p: 1
+  - name: Blur
+    params:
+      p: 1
+  - name: CLAHE
+    params:
+      p: 1
+  - name: ChannelDropout
+    params:
+      p: 1
+  - name: ChannelShuffle
+    params:
+      p: 1
+  - name: ChromaticAberration
+    params:
+      p: 1
+  - name: ColorJitter
+    params:
+      p: 1
+  - name: Defocus
+    params:
+      p: 1
+  - name: Downscale
+    params:
+      p: 1
+  - name: Emboss
+    params:
+      p: 1
+  - name: Equalize
+    params:
+      p: 1
+  - name: FancyPCA
+    params:
+      p: 1
+  - name: FromFloat
+    params:
+      p: 1
+  - name: GaussNoise
+    params:
+      p: 1
+  - name: GaussianBlur
+    params:
+      p: 1
+  - name: GlassBlur
+    params:
+      p: 1
+  - name: HueSaturationValue
+    params:
+      p: 1
+  - name: ISONoise
+    params:
+      p: 1
+  - name: ImageCompression
+    params:
+      p: 1
+  - name: InvertImg
+    params:
+      p: 1
+  - name: MedianBlur
+    params:
+      p: 1
+  - name: MotionBlur
+    params:
+      p: 1
+  - name: MultiplicativeNoise
+    params:
+      p: 1
+  - name: Normalize
+    params:
+      p: 1
+  - name: PlanckianJitter
+    params:
+      p: 1
+  - name: Posterize
+    params:
+      p: 1
+  - name: RGBShift
+    params:
+      p: 1
+  - name: RandomBrightnessContrast
+    params:
+      p: 1
+  - name: RandomFog
+    params:
+      p: 1
+  - name: RandomGamma
+    params:
+      p: 1
+  - name: RandomGravel
+    params:
+      p: 1
+  - name: RandomRain
+    params:
+      p: 1
+  - name: RandomShadow
+    params:
+      p: 1
+  - name: RandomSnow
+    params:
+      p: 1
+  - name: RandomSunFlare
+    params:
+      p: 1
+  - name: RandomToneCurve
+    params:
+      p: 1
+  - name: RingingOvershoot
+    params:
+      p: 1
+  - name: Sharpen
+    params:
+      p: 1
+  - name: Solarize
+    params:
+      p: 1
+  - name: Spatter
+    params:
+      p: 1
+  - name: Superpixels
+    params:
+      p: 1
+  - name: ToFloat
+    params:
+      p: 1
+  - name: ToGray
+    params:
+      p: 1
+  - name: ToRGB
+    params:
+      p: 1
+  - name: ToSepia
+    params:
+      p: 1
+  - name: UnsharpMask
+    params:
+      p: 1
+  - name: ZoomBlur
+    params:
+      p: 1

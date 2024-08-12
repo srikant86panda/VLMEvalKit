@@ -23,9 +23,12 @@ class Phi3Vision(BaseModel):
         self.processor = processor
         self.kwargs = kwargs
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         prompt, image_path = self.message_to_promptimg(message, dataset=dataset)
         image = Image.open(image_path).convert('RGB')
+        if transform:
+            augmented_image_np = transform(image=np.array(image))['image']
+            image = Image.fromarray(augmented_image_np)
         messages = [
             {'role': 'user', 'content': f'<|image_1|>\n{prompt}'}
         ]

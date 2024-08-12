@@ -55,9 +55,9 @@ def infer_data_api(work_dir, model_name, dataset, index_set=None, api_nproc=4, i
     return res
 
 
-def infer_data(model_name, work_dir, dataset, out_file, verbose=False, api_nproc=4):
+def infer_data(model_name, work_dir, dataset, transform, aug_name, out_file, verbose=False, api_nproc=4):
     dataset_name = dataset.dataset_name
-    prev_file = f'{work_dir}/{model_name}_{dataset_name}_PREV.pkl'
+    prev_file = f'{work_dir}/{model_name}_{dataset_name}_{aug_name}_PREV.pkl' if aug_name else f'{work_dir}/{model_name}_{dataset_name}_PREV.pkl'
     res = load(prev_file) if osp.exists(prev_file) else {}
     if osp.exists(out_file):
         res.update(load(out_file))
@@ -113,7 +113,7 @@ def infer_data(model_name, work_dir, dataset, out_file, verbose=False, api_nproc
         else:
             struct = dataset.build_prompt(data.iloc[i])
 
-        response = model.generate(message=struct, dataset=dataset_name)
+        response = model.generate(message=struct, dataset=dataset_name, transform=transform)
         torch.cuda.empty_cache()
 
         if verbose:
@@ -129,12 +129,14 @@ def infer_data(model_name, work_dir, dataset, out_file, verbose=False, api_nproc
 
 
 # A wrapper for infer_data, do the pre & post processing
-def infer_data_job(model, work_dir, model_name, dataset, verbose=False, api_nproc=4, ignore_failed=False):
+def infer_data_job(model, work_dir, model_name, dataset, augmentation, verbose=False, api_nproc=4, ignore_failed=False):
     rank, world_size = get_rank_and_world_size()
     dataset_name = dataset.dataset_name
-    result_file = osp.join(work_dir, f'{model_name}_{dataset_name}.xlsx')
+    aug_name = augmentation['name']
+    transform = augmentation['augmentation']
+    result_file = osp.join(work_dir, f'{model_name}_{dataset_name}_{aug_name}.xlsx') if aug_name else osp.join(work_dir, f'{model_name}_{dataset_name}.xlsx')
 
-    prev_file = f'{work_dir}/{model_name}_{dataset_name}_PREV.pkl'
+    prev_file = f'{work_dir}/{model_name}_{dataset_name}_{aug_name}_PREV.pkl' if aug_name else f'{work_dir}/{model_name}_{dataset_name}_PREV.pkl'
     if osp.exists(result_file):
         if rank == 0:
             data = load(result_file)
@@ -145,11 +147,11 @@ def infer_data_job(model, work_dir, model_name, dataset, verbose=False, api_npro
         if world_size > 1:
             dist.barrier()
 
-    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{dataset_name}.pkl')
+    tmpl = osp.join(work_dir, '{}' + f'{world_size}_{dataset_name}_{aug_name}.pkl') if aug_name else osp.join(work_dir, '{}' + f'{world_size}_{dataset_name}.pkl')
     out_file = tmpl.format(rank)
 
     model = infer_data(
-        model, work_dir=work_dir, dataset=dataset, out_file=out_file, verbose=verbose, api_nproc=api_nproc)
+        model, work_dir=work_dir, transform=transform, aug_name=aug_name, dataset=dataset, out_file=out_file, verbose=verbose, api_nproc=api_nproc)
     if world_size > 1:
         dist.barrier()
 

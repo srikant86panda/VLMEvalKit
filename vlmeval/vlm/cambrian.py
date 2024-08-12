@@ -63,9 +63,12 @@ class Cambrian(BaseModel):
         input_ids = input_ids.unsqueeze(0).cuda()
         return input_ids, image_tensor, image_size, prompt
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         prompt, image_path = self.message_to_promptimg(message, dataset=dataset)
         image = Image.open(image_path).convert('RGB')
+        if transform:
+            augmented_image_np = transform(image=np.array(image))['image']
+            image = Image.fromarray(augmented_image_np)
         input_ids, image_tensor, image_sizes, prompt = self.process(image, prompt)
         input_ids = input_ids.to(device='cuda', non_blocking=True)
         with torch.inference_mode():

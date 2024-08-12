@@ -23,14 +23,20 @@ class Chameleon(BaseModel):
         self.model = model.cuda().eval()
         self.processor = processor
 
-    def generate_inner(self, message, dataset=None):
+    def generate_inner(self, message, dataset=None, transform=None):
         content, images = '', []
         for x in message:
             if x['type'] == 'text':
                 content += x['value']
             elif x['type'] == 'image':
                 content += '<image>\n'
-                images.append(Image.open(x['value']))
+                image = Image.open(x['value'])
+                if transform:
+                    augmented_image_np = transform(image=np.array(image))['image']
+                    image = Image.fromarray(augmented_image_np)
+                images.append()
+
+
 
         inputs = self.processor(
             text=[content],
