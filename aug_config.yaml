@@ -1,131 +1,14 @@
 individual_augmentations:
-  - name: AdvancedBlur
+  - name: ColorJitter
     params:
       p: 1
   - name: Blur
     params:
       p: 1
-  - name: ChromaticAberration
+multiple_augmentations:
+  - name: ColorJitter
     params:
       p: 1
-  - name: Emboss
+  - name: Blur
     params:
       p: 1
-  - name: FancyPCA
-    params:
-      p: 1
-  - name: GaussNoise
-    params:
-      p: 1
-  - name: HueSaturationValue
-    params:
-      p: 1
-  - name: ISONoise
-    params:
-      p: 1
-  - name: ImageCompression
-    params:
-      p: 1
-  - name: MotionBlur
-    params:
-      p: 1
-  - name: MultiplicativeNoise
-    params:
-      p: 1
-  - name: PlanckianJitter
-    params:
-      p: 1
-  - name: Posterize
-    params:
-      p: 1
-  - name: RGBShift
-    params:
-      p: 1
-  - name: RandomBrightnessContrast
-    params:
-      p: 1
-  - name: RandomFog
-    params:
-      p: 1
-  - name: RandomGamma
-    params:
-      p: 1
-  - name: RandomGravel
-    params:
-      p: 1
-  - name: RandomToneCurve
-    params:
-      p: 1
-  - name: ToRGB
-    params:
-      p: 1
-  - name: UnsharpMask
-    params:
-      p: 1
-  - name: Affine
-    params:
-      p: 1
-  - name: CoarseDropout
-    params:
-      p: 1
-  - name: D4
-    params:
-      p: 1
-  - name: ElasticTransform
-    params:
-      p: 1
-  - name: Flip
-    params:
-      p: 1
-  - name: GridDistortion
-    params:
-      p: 1
-  - name: GridDropout
-    params:
-      p: 1
-  - name: HorizontalFlip
-    params:
-      p: 1
-  - name: Lambda
-    params:
-      p: 1
-  - name: Morphological
-    params:
-      p: 1
-  - name: OpticalDistortion
-    params:
-      p: 1
-  - name: Perspective
-    params:
-      p: 1
-  - name: PiecewiseAffine
-    params:
-      p: 1
-  - name: PixelDropout
-    params:
-      p: 1
-  - name: RandomGridShuffle
-    params:
-      p: 1
-  - name: RandomRotate90
-    params:
-      p: 1
-  - name: Rotate
-    params:
-      p: 1
-  - name: SafeRotate
-    params:
-      p: 1
-  - name: Transpose
-    params:
-      p: 1
-  - name: VerticalFlip
-    params:
-      p: 1
-# multiple_augmentations:
-#   - name: ColorJitter
-#     params:
-#       p: 1
-#   - name: Blur
-#     params:
-#       p: 1

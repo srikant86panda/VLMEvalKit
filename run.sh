@@ -1,3 +1,5 @@
+Library install:
+pip install albumentations
 
 Task list:
 MMMU_TEST MME TextVQA_VAL POPE OCRBench ScienceQA_TEST BLINK COCO_VAL RealWorldQA ChartQA_TEST OCRVQA_TEST
@@ -7,6 +9,12 @@ Env 1: InternVL2-1B InternVL2-2B InternVL2-4B InternVL2-8B InternVL2-26B InternV
 Env 2: Phi-3-Vision
 Env 3: chameleon_7b chameleon_30b
 
-
+without augmentation
 CUDA_VISIBLE_DEVICES=0 python run.py --data RealWorldQA --model paligemma-3b-mix-448 --verbose
 CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 run.py --data RealWorldQA --model paligemma-3b-mix-448 --verbose
+
+with sample augemtnation
+CUDA_VISIBLE_DEVICES=0 python run.py --data RealWorldQA --model paligemma-3b-mix-448 --verbose --aug_config ./aug_config.yaml
+
+with spatial augemtnation
+CUDA_VISIBLE_DEVICES=0 python run.py --data RealWorldQA --model paligemma-3b-mix-448 --verbose --aug_config ./aug_config_spatial.yaml
