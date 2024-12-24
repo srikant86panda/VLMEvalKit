@@ -87,14 +87,14 @@ class ImageBaseDataset:
         update_flag = False
         file_name = url.split('/')[-1]
         data_path = osp.join(data_root, file_name)
+        print(f'data_path: {data_path}, {md5(data_path)}, file_md5: {file_md5}')
         if osp.exists(data_path) and (file_md5 is None or md5(data_path) == file_md5):
             pass
         else:
-            warnings.warn('The dataset tsv is not downloaded')
-            download_file(url, data_path)
+            warnings.warn('The dataset tsv md5 is not valid')
             update_flag = True
 
-        if file_size(data_path, 'GB') > 1:
+        if file_size(data_path, 'GB') > 3:
             local_path = data_path.replace('.tsv', '_local.tsv')
             if not osp.exists(local_path) or os.environ.get('FORCE_LOCAL', None) or update_flag:
                 from ..tools import LOCALIZE

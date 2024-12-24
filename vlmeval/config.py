@@ -137,6 +137,8 @@ qwen_series = {
 }
 
 llava_series = {
+    'llava_hf_v1.5_7b': partial(LLaVA_HF, model_path='llava-hf/llava-1.5-7b-hf'),
+    'llava_hf_v1.5_13b': partial(LLaVA_HF, model_path='llava-hf/llava-1.5-13b-hf'),
     'llava_v1.5_7b': partial(LLaVA, model_path='liuhaotian/llava-v1.5-7b'),
     'llava_v1.5_13b': partial(LLaVA, model_path='liuhaotian/llava-v1.5-13b'),
     'llava_v1_7b': partial(LLaVA, model_path=LLAVA_V1_7B_MODEL_PTH),
@@ -366,7 +368,7 @@ points_series = {
 }
 
 nvlm_series = {
-    'NVLM': partial(NVLM, model_path='nvidia/NVLM-D-72B'), 
+    'NVLM': partial(NVLM, model_path='nvidia/NVLM-D-72B'),
 }
 
 vintern_series = {
@@ -391,7 +393,7 @@ model_groups = [
     xcomposer_series, minigpt4_series, idefics_series, instructblip_series,
     deepseekvl_series, janus_series, minicpm_series, cogvlm_series, wemm_series,
     cambrian_series, chameleon_series, video_models, ovis_series, vila_series,
-    mantis_series, mmalaya_series, phi3_series, xgen_mm_series, qwen2vl_series, 
+    mantis_series, mmalaya_series, phi3_series, xgen_mm_series, qwen2vl_series,
     slime_series, eagle_series, moondream_series, llama_series, molmo_series,
     kosmos_series, points_series, nvlm_series, vintern_series, h2ovl_series, aria_series,
     smolvlm_series, sail_series
@@ -399,4 +401,3 @@ model_groups = [
 
 for grp in model_groups:
     supported_VLM.update(grp)
-

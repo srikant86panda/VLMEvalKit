@@ -169,3 +169,6 @@ demo.ipynb
 *json
 .vscode
 *.swp
+
+outputs/*
+data/*
