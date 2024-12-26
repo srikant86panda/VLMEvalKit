@@ -218,7 +218,7 @@ def main():
                     if args.fps > 0:
                         if dataset_name == 'MVBench':
                             raise ValueError('MVBench does not support fps setting, please transfer to MVBench_MP4!')
-                        elif dataset_name == 'MVTamperBench':
+                        elif dataset_name == ['MVTamperBench', 'MVTamperBenchSample', 'MVTamperBenchSample_Start', 'MVTamperBenchSample_End']:
                             raise ValueError('MVTamperBench does not support fps setting')
                         args.nframe = 0
                     if dataset_name in ['MMBench-Video']:
