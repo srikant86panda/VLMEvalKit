@@ -444,6 +444,6 @@ Based on your observations, select the best option that accurately addresses the
         rating_tamper_type = get_dimension_rating(score_file, 'tamper_type')
         dump(rating_tamper_type, tgt_tamper_type_file)
         rating_task_tamper_type = get_dimension_rating(score_file, 'task_tamper_type')
-        dump(rating_task_tamper_type, )
+        dump(rating_task_tamper_type, tgt_task_tamper_type_file)
         rating = {**rating_task_type, **rating_tamper_type, **rating_task_tamper_type}
         return rating
