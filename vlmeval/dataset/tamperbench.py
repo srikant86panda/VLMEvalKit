@@ -25,7 +25,7 @@ class MVTamperBench(VideoBaseDataset):
     MD5 = {
         'MVTamperBench': '12a8bac1b4452c5c7974c31f8e76e882',
         'MVTamperBenchSample': 'af0059e5e0f894aa61753b5a09c37fc6',
-        'MVTamperBenchSample_Start': '587edbbbe7ae998cebecbbadfe899ba0',
+        'MVTamperBenchSample_Start': '69f8ce9be14c297c1e7478b49bbe80db',
         'MVTamperBenchSample_End': 'fb12bf5e0355b8ff6a1b029b2970347c',
     }
 
