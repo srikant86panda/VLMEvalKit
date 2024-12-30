@@ -36,46 +36,46 @@ Based on your observations, select the best option that accurately addresses the
 
     def __init__(self, dataset='MVTamperBench', pack=False):
         self.type_data_list = {
-            'Action Sequence': ('action_sequence.json',
-                                'your_data_path/star/Charades_v1_480/', 'video', False),  # has start & end
-            'Action Prediction': ('action_prediction.json',
-                                  'your_data_path/star/Charades_v1_480/', 'video', False),  # has start & end
-            'Action Antonym': ('action_antonym.json',
-                               'your_data_path/ssv2_video/', 'video', False),
-            'Fine-grained Action': ('fine_grained_action.json',
-                                    'your_data_path/Moments_in_Time_Raw/videos/', 'video', False),
-            'Unexpected Action': ('unexpected_action.json',
-                                  'your_data_path/FunQA_test/test/', 'video', False),
-            'Object Existence': ('object_existence.json',
-                                 'your_data_path/clevrer/video_validation/', 'video', False),
-            'Object Interaction': ('object_interaction.json',
-                                   'your_data_path/star/Charades_v1_480/', 'video', False),  # has start & end
-            'Object Shuffle': ('object_shuffle.json',
-                               'your_data_path/perception/videos/', 'video', False),
-            'Moving Direction': ('moving_direction.json',
-                                 'your_data_path/clevrer/video_validation/', 'video', False),
-            'Action Localization': ('action_localization.json',
-                                    'your_data_path/sta/sta_video/', 'video', False),   # has start & end
-            'Scene Transition': ('scene_transition.json',
-                                 'your_data_path/scene_qa/video/', 'video', False),
-            'Action Count': ('action_count.json',
-                             'your_data_path/perception/videos/', 'video', False),
-            'Moving Count': ('moving_count.json',
-                             'your_data_path/clevrer/video_validation/', 'video', False),
-            'Moving Attribute': ('moving_attribute.json',
-                                 'your_data_path/clevrer/video_validation/', 'video', False),
-            'State Change': ('state_change.json',
-                             'your_data_path/perception/videos/', 'video', False),
+            # 'Action Sequence': ('action_sequence.json',
+            #                     'your_data_path/star/Charades_v1_480/', 'video', False),  # has start & end
+            # 'Action Prediction': ('action_prediction.json',
+            #                       'your_data_path/star/Charades_v1_480/', 'video', False),  # has start & end
+            # 'Action Antonym': ('action_antonym.json',
+            #                    'your_data_path/ssv2_video/', 'video', False),
+            # 'Fine-grained Action': ('fine_grained_action.json',
+            #                         'your_data_path/Moments_in_Time_Raw/videos/', 'video', False),
+            # 'Unexpected Action': ('unexpected_action.json',
+            #                       'your_data_path/FunQA_test/test/', 'video', False),
+            # 'Object Existence': ('object_existence.json',
+            #                      'your_data_path/clevrer/video_validation/', 'video', False),
+            # 'Object Interaction': ('object_interaction.json',
+            #                        'your_data_path/star/Charades_v1_480/', 'video', False),  # has start & end
+            # 'Object Shuffle': ('object_shuffle.json',
+            #                    'your_data_path/perception/videos/', 'video', False),
+            # 'Moving Direction': ('moving_direction.json',
+            #                      'your_data_path/clevrer/video_validation/', 'video', False),
+            # 'Action Localization': ('action_localization.json',
+            #                         'your_data_path/sta/sta_video/', 'video', False),   # has start & end
+            # 'Scene Transition': ('scene_transition.json',
+            #                      'your_data_path/scene_qa/video/', 'video', False),
+            # 'Action Count': ('action_count.json',
+            #                  'your_data_path/perception/videos/', 'video', False),
+            # 'Moving Count': ('moving_count.json',
+            #                  'your_data_path/clevrer/video_validation/', 'video', False),
+            # 'Moving Attribute': ('moving_attribute.json',
+            #                      'your_data_path/clevrer/video_validation/', 'video', False),
+            # 'State Change': ('state_change.json',
+            #                  'your_data_path/perception/videos/', 'video', False),
             'Fine-grained Pose': ('fine_grained_pose.json',
                                   'your_data_path/ntu/', 'video', False),
-            'Character Order': ('character_order.json',
-                                'your_data_path/perception/videos/', 'video', False),
-            'Egocentric Navigation': ('egocentric_navigation.json',
-                                      'your_data_path/vlnqa/', 'video', False),
-            'Episodic Reasoning': ('episodic_reasoning.json',
-                                   'your_data_path/tvqa/frames_fps3/', 'video', False),  # has start & end
-            'Counterfactual Inference': ('counterfactual_inference.json',
-                                         'your_data_path/clevrer/video_validation/', 'video', False),
+            # 'Character Order': ('character_order.json',
+            #                     'your_data_path/perception/videos/', 'video', False),
+            # 'Egocentric Navigation': ('egocentric_navigation.json',
+            #                           'your_data_path/vlnqa/', 'video', False),
+            # 'Episodic Reasoning': ('episodic_reasoning.json',
+            #                        'your_data_path/tvqa/frames_fps3/', 'video', False),  # has start & end
+            # 'Counterfactual Inference': ('counterfactual_inference.json',
+            #                              'your_data_path/clevrer/video_validation/', 'video', False),
         }
         super().__init__(dataset=dataset, pack=pack)
 
