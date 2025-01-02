@@ -511,21 +511,41 @@ class ToTorchFormatTensor(object):
     to a torch.FloatTensor of shape (C x H x W) in the range [0.0, 1.0] """
 
     def __init__(self, div=True):
+        """
+        Initializes the converter.
+
+        Args:
+            div (bool, optional): Whether to divide the pixel values by 255. Defaults to True.
+        """
         self.div = div
 
     def __call__(self, pic):
+        """
+        Converts the input image to a torch tensor.
+
+        Args:
+            pic: A PIL.Image or numpy.ndarray representing the image.
+
+        Returns:
+            torch.FloatTensor: The converted image tensor.
+        """
         if isinstance(pic, np.ndarray):
             # handle numpy array
+            # Convert the numpy array to a torch tensor and permute axes to (C, H, W)
             img = torch.from_numpy(pic).permute(2, 0, 1).contiguous()
         else:
-            # handle PIL Image
+            # Handle PIL Image conversion
+            # Convert the PIL Image to a byte tensor
             img = torch.ByteTensor(
                 torch.ByteStorage.from_buffer(
                     pic.tobytes()))
+            # Reshape the tensor to (H, W, C)
             img = img.view(pic.size[1], pic.size[0], len(pic.mode))
             # put it from HWC to CHW format
             # yikes, this transpose takes 80% of the loading time/CPU
             img = img.transpose(0, 1).transpose(0, 2).contiguous()
+        
+        # Return the tensor as a float type, optionally dividing by 255
         return img.float().div(255) if self.div else img.float()
 
 
