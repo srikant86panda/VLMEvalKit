@@ -474,15 +474,41 @@ class GroupRandomSizedCrop(object):
 
 
 class ConvertDataFormat(object):
+    """
+   A class used to convert data formats based on the specified model type.
+
+   Attributes:
+       model_type (str): The type of model being used ('2D' or other).
+   """
     def __init__(self, model_type):
+        """
+        Initializes the ConvertDataFormat object.
+
+        Args:
+            model_type (str): The type of model being used ('2D' or other).
+        """
         self.model_type = model_type
 
     def __call__(self, images):
+        """
+        Converts the input images to the required format based on the model type.
+
+        Args:
+            images (torch.Tensor): The input images.
+
+        Returns:
+            torch.Tensor: The converted images.
+        """
+        # If the model type is '2D', no conversion is needed
         if self.model_type == '2D':
             return images
+        # Get the dimensions of the input images
         tc, h, w = images.size()
+        # Calculate the number of frames (t) assuming 3 color channels per frame
         t = tc // 3
+        # Reshape the images to (frames, channels, height, width)
         images = images.view(t, 3, h, w)
+        # Permute the dimensions to (channels, frames, height, width)
         images = images.permute(1, 0, 2, 3)
         return images
 
@@ -544,7 +570,7 @@ class ToTorchFormatTensor(object):
             # put it from HWC to CHW format
             # yikes, this transpose takes 80% of the loading time/CPU
             img = img.transpose(0, 1).transpose(0, 2).contiguous()
-        
+
         # Return the tensor as a float type, optionally dividing by 255
         return img.float().div(255) if self.div else img.float()
 
