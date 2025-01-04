@@ -42,24 +42,24 @@ class ImageCaptionDataset(ImageBaseDataset):
 
     DATASET_URL = {
         'COCO_VAL': 'https://opencompass.openxlab.space/utils/VLMEval/COCO_VAL.tsv',
-        'COCO_VAL_sample': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample.tsv'
-        'COCO_VAL_sample_grid_2x1_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x1_row1_col1.tsv'
-        'COCO_VAL_sample_grid_2x1_row2_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x1_row2_col1.tsv'
-        'COCO_VAL_sample_grid_1x2_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_1x2_row1_col1.tsv'
-        'COCO_VAL_sample_grid_1x2_row1_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_1x2_row1_col2.tsv'
-        'COCO_VAL_sample_grid_2x2_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row1_col1.tsv'
-        'COCO_VAL_sample_grid_2x2_row1_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row1_col2.tsv'
-        'COCO_VAL_sample_grid_2x2_row2_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row2_col1.tsv'
-        'COCO_VAL_sample_grid_2x2_row2_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row2_col2.tsv'
-        'COCO_VAL_sample_grid_3x3_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row1_col1.tsv'
-        'COCO_VAL_sample_grid_3x3_row1_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row1_col2.tsv'
-        'COCO_VAL_sample_grid_3x3_row1_col3': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row1_col3.tsv'
-        'COCO_VAL_sample_grid_3x3_row2_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row2_col1.tsv'
-        'COCO_VAL_sample_grid_3x3_row2_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row2_col2.tsv'
-        'COCO_VAL_sample_grid_3x3_row2_col3': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row2_col3.tsv'
-        'COCO_VAL_sample_grid_3x3_row3_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row3_col1.tsv'
-        'COCO_VAL_sample_grid_3x3_row3_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row3_col2.tsv'
-        'COCO_VAL_sample_grid_3x3_row3_col3': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row3_col3.tsv'
+        'COCO_VAL_sample': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample.tsv',
+        'COCO_VAL_sample_grid_2x1_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x1_row1_col1.tsv',
+        'COCO_VAL_sample_grid_2x1_row2_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x1_row2_col1.tsv',
+        'COCO_VAL_sample_grid_1x2_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_1x2_row1_col1.tsv',
+        'COCO_VAL_sample_grid_1x2_row1_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_1x2_row1_col2.tsv',
+        'COCO_VAL_sample_grid_2x2_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row1_col1.tsv',
+        'COCO_VAL_sample_grid_2x2_row1_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row1_col2.tsv',
+        'COCO_VAL_sample_grid_2x2_row2_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row2_col1.tsv',
+        'COCO_VAL_sample_grid_2x2_row2_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_2x2_row2_col2.tsv',
+        'COCO_VAL_sample_grid_3x3_row1_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row1_col1.tsv',
+        'COCO_VAL_sample_grid_3x3_row1_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row1_col2.tsv',
+        'COCO_VAL_sample_grid_3x3_row1_col3': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row1_col3.tsv',
+        'COCO_VAL_sample_grid_3x3_row2_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row2_col1.tsv',
+        'COCO_VAL_sample_grid_3x3_row2_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row2_col2.tsv',
+        'COCO_VAL_sample_grid_3x3_row2_col3': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row2_col3.tsv',
+        'COCO_VAL_sample_grid_3x3_row3_col1': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row3_col1.tsv',
+        'COCO_VAL_sample_grid_3x3_row3_col2': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row3_col2.tsv',
+        'COCO_VAL_sample_grid_3x3_row3_col3': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/COCO_VAL/COCO_VAL_sample_grid_3x3_row3_col3.tsv',
     }
 
     DATASET_MD5 = {
