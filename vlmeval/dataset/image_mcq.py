@@ -85,14 +85,23 @@ class ImageMCQDataset(ImageBaseDataset):
         'AI2D_TEST_NO_MASK': 'https://opencompass.openxlab.space/utils/VLMEval/AI2D_TEST_NO_MASK.tsv',
         'MMStar': 'https://opencompass.openxlab.space/utils/VLMEval/MMStar.tsv',
         'RealWorldQA': 'https://opencompass.openxlab.space/utils/VLMEval/RealWorldQA.tsv',
-        'RealWorldQA_left': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_left.tsv',
-        'RealWorldQA_right': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_right.tsv',
-        'RealWorldQA_top': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_top.tsv',
-        'RealWorldQA_bottom': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_bottom.tsv',
-        'RealWorldQA_bottom_left': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_bottom_left.tsv',
-        'RealWorldQA_bottom_right': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_bottom_right.tsv',
-        'RealWorldQA_top_left': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_top_left.tsv',
-        'RealWorldQA_top_right': 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_top_right.tsv',
+        'RealWorldQA_grid_2x1_row1_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_2x1_row1_col1.tsv'
+        'RealWorldQA_grid_2x1_row2_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_2x1_row2_col1.tsv'
+        'RealWorldQA_grid_1x2_row1_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_1x2_row1_col1.tsv'
+        'RealWorldQA_grid_1x2_row1_col2' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_1x2_row1_col2.tsv'
+        'RealWorldQA_grid_2x2_row1_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_2x2_row1_col1.tsv'
+        'RealWorldQA_grid_2x2_row1_col2' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_2x2_row1_col2.tsv'
+        'RealWorldQA_grid_2x2_row2_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_2x2_row2_col1.tsv'
+        'RealWorldQA_grid_2x2_row2_col2' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_2x2_row2_col2.tsv'
+        'RealWorldQA_grid_3x3_row1_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row1_col1.tsv'
+        'RealWorldQA_grid_3x3_row1_col2' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row1_col2.tsv'
+        'RealWorldQA_grid_3x3_row1_col3' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row1_col3.tsv'
+        'RealWorldQA_grid_3x3_row2_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row2_col1.tsv'
+        'RealWorldQA_grid_3x3_row2_col2' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row2_col2.tsv'
+        'RealWorldQA_grid_3x3_row2_col3' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row2_col3.tsv'
+        'RealWorldQA_grid_3x3_row3_col1' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row3_col1.tsv'
+        'RealWorldQA_grid_3x3_row3_col2' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row3_col2.tsv'
+        'RealWorldQA_grid_3x3_row3_col3' : 'https://huggingface.co/datasets/Srikant86/VLMEval/blob/main/RealWorldQA/RealWorldQA_grid_3x3_row3_col3.tsv',
         'MLLMGuard_DS': 'https://opencompass.openxlab.space/utils/VLMEval/MLLMGuard_DS.tsv',
         'BLINK': 'https://opencompass.openxlab.space/utils/VLMEval/BLINK.tsv',
         'TaskMeAnything_v1_imageqa_random': (
@@ -152,14 +161,23 @@ class ImageMCQDataset(ImageBaseDataset):
         'AI2D_TEST_NO_MASK': 'fd8f463634d4fe9fbd23b876e8eea5be',
         'MMStar': 'e1ecd2140806c1b1bbf54b43372efb9e',
         'RealWorldQA': '4de008f55dc4fd008ca9e15321dc44b7',
-        'RealWorldQA_left': '924716ad474c990181f3b3bb173018f0',
-        'RealWorldQA_right': 'b31568571263659c9d9ca84d02929c8e',
-        'RealWorldQA_top': 'b7d5cd746387667e2884a3de38609336',
-        'RealWorldQA_bottom': '55d2278938c7f0c3ef012e51ee6eee9b',
-        'RealWorldQA_bottom_left': 'ddbf1e5ad02b1a49db40a1b4529d8d8c',
-        'RealWorRealWorldQA_bottom_right': '2b312ae95950d67758eee3cc860d2ab8',
-        'RealWorldQA_top_left': '8f8735950fd349b247613769a6d2555d',
-        'RealWorldQA_top_right': '77dd07d55f6f5697a5cfd88563d6406a',
+        'RealWorldQA_grid_2x1_row1_col1': '23dd6bb085d7fc34b4501450285c2b65',
+        'RealWorldQA_grid_2x1_row2_col1': '1bb1973c44a95f26281afcbe5c1b0344',
+        'RealWorldQA_grid_1x2_row1_col1': '05f27eaaabbfda0b64510b5a40fd7904',
+        'RealWorldQA_grid_1x2_row1_col2': 'e64007802642df4f3bc8bf82f3470e09',
+        'RealWorldQA_grid_2x2_row1_col1': 'b9d02c2e82afbae3d8574fbebed3e1e6',
+        'RealWorldQA_grid_2x2_row1_col2': '7cdc6b709903e7be066dbc7862bb9a00',
+        'RealWorldQA_grid_2x2_row2_col1': '28d19d380f1e13e5266008374506c3ba',
+        'RealWorldQA_grid_2x2_row2_col2': '1fe65200b3cb57d521829472f6375164',
+        'RealWorldQA_grid_3x3_row1_col1': '0ef5a1f5a2caefeb623177fa5cc3dd51',
+        'RealWorldQA_grid_3x3_row1_col2': '469bde7d612953e032cf46394de307dd',
+        'RealWorldQA_grid_3x3_row1_col3': '73dd3dbbd3ebf85369360902acbfafbf',
+        'RealWorldQA_grid_3x3_row2_col1': '8116d7ab702a9bc1307af26d6b6aa5e2',
+        'RealWorldQA_grid_3x3_row2_col2': '06a9ddb5d5b6769849cb7f913e724ad8',
+        'RealWorldQA_grid_3x3_row2_col3': 'a851436bcb159683591fff6c758bdb78',
+        'RealWorldQA_grid_3x3_row3_col1': '0c4e03b4c7a4b9375c0811b897bfa769',
+        'RealWorldQA_grid_3x3_row3_col2': '4cf68f9ed12af00e55c917f7140f0b4b',
+        'RealWorldQA_grid_3x3_row3_col3': '77483b061dd0dca5d08e8cddef7f15a3',
         'MLLMGuard_DS': '975fc0dd7119386e198c37d71e274b3f',
         'BLINK': '3b6649b6a662184ea046908e5506260e',
         'TaskMeAnything_v1_imageqa_random': '023fef69e2ca21827afb77c5ec3bc889',
