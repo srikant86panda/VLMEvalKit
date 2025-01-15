@@ -168,7 +168,16 @@ class MultiGroupRandomCrop(object):
         self.groups = groups
 
     def __call__(self, img_group):
+        """
+        Applies the random cropping transformation to a group of images.
 
+        Args:
+            img_group (list): A list of PIL.Image objects to be cropped.
+
+        Returns:
+            list: A list of cropped images. If `groups` is greater than 1,
+                  the list will contain multiple cropped regions for each input image.
+        """
         w, h = img_group[0].size
         th, tw = self.size
 
@@ -197,7 +206,17 @@ class GroupCenterCrop(object):
 
 
 class GroupRandomHorizontalFlip(object):
-    """Randomly horizontally flips the given PIL.Image with a probability of 0.5
+    """
+    Randomly horizontally flips the given PIL.Image with a probability of 0.5.
+
+    This transformation is commonly used for data augmentation to introduce
+    variability and improve the robustness of models during training. For optical
+    flow images, the pixel values are inverted after flipping to ensure consistency.
+
+    Args:
+        is_flow (bool): If True, the transformation will handle optical flow images
+                        by inverting the pixel values of the flipped image for every
+                        second image in the group.
     """
 
     def __init__(self, is_flow=False):
@@ -217,6 +236,14 @@ class GroupRandomHorizontalFlip(object):
 
 
 class GroupNormalize(object):
+    """
+    Normalizes the input tensor using the provided mean and standard deviation.
+    The normalization is applied independently to each channel (e.g., RGB).
+
+    Args:
+        mean (list): Mean values for each channel to be used for normalization.
+        std (list): Standard deviation values for each channel.
+    """
     def __init__(self, mean, std):
         self.mean = mean
         self.std = std
@@ -262,8 +289,15 @@ class GroupOverSample(object):
     def __call__(self, img_group):
 
         if self.scale_worker is not None:
+            # Apply the scale worker to resize the input image group.
+            # This ensures that all images in the group are scaled to a consistent size
+            # before further processing, which is essential for uniform cropping.
             img_group = self.scale_worker(img_group)
 
+        # Calculate offsets for cropping the images.
+        # The offsets represent the top-left coordinates (o_w, o_h) of each crop,
+        # allowing different regions of the image to be sampled. These offsets
+        # are used to ensure consistent cropping across the group of images.
         image_w, image_h = img_group[0].size
         crop_w, crop_h = self.crop_size
 
@@ -271,6 +305,9 @@ class GroupOverSample(object):
             False, image_w, image_h, crop_w, crop_h)
         oversample_group = list()
         for o_w, o_h in offsets:
+            # This loop processes each offset to create two sets of image crops:
+            # 1. Normal crops from the specified offset.
+            # 2. Flipped crops (horizontally flipped) for data augmentation.
             normal_group = list()
             flip_group = list()
             for i, img in enumerate(img_group):
