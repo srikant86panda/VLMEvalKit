@@ -3,10 +3,8 @@ from huggingface_hub import snapshot_download
 from ..smp import *
 from .video_base import VideoBaseDataset
 from .utils import build_judge, DEBUG_MESSAGE
-from ..utils import track_progress_rich
 import torchvision.transforms as T
 from torchvision import transforms
-from torchvision.transforms.functional import InterpolationMode
 from decord import VideoReader, cpu
 import imageio
 import cv2
@@ -15,10 +13,13 @@ import os
 import glob
 from .utils.tamperbench import *
 
+# constants
 FAIL_MSG = 'Failed to obtain answer via API.'
+
 
 class MVTamperBench(VideoBaseDataset):
 
+    BASENAME = "MVTamperBench"
     MD5 = {
         'MVTamperBench': '3557260881ba47db8add440c5edb742a',
         'MVTamperBenchStart': 'c1d3c299ddbff6000f0d9cad820187b8',
@@ -31,7 +32,8 @@ Based on your observations, select the best option that accurately addresses the
 
     TYPE = 'Video-MCQ'
 
-    def __init__(self, dataset='MVTamperBench', pack=False):
+    def __init__(self, dataset='MVTamperBench', nframe=0, fps=-1):
+        self.dataset_name = dataset
         self.type_data_list = {
             'Action Sequence': ('action_sequence.json',
                                 'your_data_path/star/Charades_v1_480/', 'video', False),  # has start & end
@@ -72,31 +74,44 @@ Based on your observations, select the best option that accurately addresses the
             'Counterfactual Inference': ('counterfactual_inference.json',
                                          'your_data_path/clevrer/video_validation/', 'video', False),
         }
-        super().__init__(dataset=dataset, pack=pack)
+        super().__init__(dataset=dataset, nframe=nframe, fps=fps)
 
     @classmethod
     def supported_datasets(cls):
         return ['MVTamperBench', 'MVTamperBenchStart', 'MVTamperBenchEnd']
 
-    def prepare_dataset(self, dataset_name='MVTamperBench ', repo_id=None):
+    def prepare_dataset(self, dataset_name='MVTamperBench', repo_id=None):
         if repo_id:
             dataset_name = repo_id.split('/')[-1]
         else:
             repo_id = f'Srikant86/{dataset_name}'
 
         def check_integrity(pth):
+            """
+    Verifies the completeness and consistency of the dataset located at the specified path.
+
+    Args:
+        path_to_dataset (str): The directory path where the dataset is stored.
+
+    Returns:
+        bool: True if the dataset is intact, False otherwise.
+    """
+            # Construct the full path to the data file
             data_file = osp.join(pth, f'{dataset_name}.tsv')
 
+            # Check if the data file exists
             if not os.path.exists(data_file):
+                # If the data file doesn't exist, immediately return False
                 return False
-
+            # Verify the integrity of the data file by checking its MD5 hash
             if md5(data_file) != self.MD5[dataset_name]:
                 return False
-
+            # Load the data from the data file
             data = load(data_file)
             for idx, item in data.iterrows():
                 if not osp.exists(osp.join(pth, item['prefix'], item['video'])):
                     return False
+            # If all checks pass, the dataset is considered intact
             return True
 
         cache_path = get_cache_path(repo_id, branch='main')
@@ -123,8 +138,9 @@ Based on your observations, select the best option that accurately addresses the
                 for k, v in self.type_data_list.items():
                     with open(os.path.join(json_data_dir, v[0]), 'r') as f:
                         json_data = json.load(f)
-                    for data in json_data:
-                            if os.path.exists(os.path.join(dataset_path, v[1].replace('your_data_path', 'video'), data['video'])):
+                        for data in json_data:
+                            if os.path.exists(
+                                    os.path.join(dataset_path, v[1].replace('your_data_path', 'video'), data['video'])):
                                 self.data_list.append({
                                     'task_type': k,
                                     'prefix': v[1].replace('your_data_path', 'video'),
@@ -137,7 +153,7 @@ Based on your observations, select the best option that accurately addresses the
                                     'answer': data['answer'],
                                     'candidates': data['candidates'],
                                     'tamper_type': data['tamper_type'],
-                                    'task_tamper_type': f'{k}_{data['tamper_type']}'
+                                    'task_tamper_type': f"{k}_{data['tamper_type']}"
                                 })
 
                 data_df = pd.DataFrame(self.data_list)
@@ -205,18 +221,14 @@ Based on your observations, select the best option that accurately addresses the
         return dict(root=dataset_path, data_file=data_file)
 
     def get_index(self, bound, fps, max_frame, first_idx=0):
-        if bound:
-            start, end = bound[0], bound[1]
-        else:
-            start, end = -100000, 100000
+        start, end = bound if bound else (-100000, 100000)
         start_idx = max(first_idx, round(start * fps))
         end_idx = min(round(end * fps), max_frame)
-        seg_size = float(end_idx - start_idx) / self.num_segments
-        frame_indices = np.array([
-            int(start_idx + (seg_size / 2) + np.round(seg_size * idx))
-            for idx in range(self.num_segments)
-        ])
-        return frame_indices
+        seg_size = (end_idx - start_idx) / self.num_segments
+        mid_seg_size = seg_size / 2
+        indices = np.arange(self.num_segments)
+        frame_indices = start_idx + mid_seg_size + np.round(seg_size * indices)
+        return frame_indices.astype(int)
 
     def read_video(self, video_path, bound=None):
         vr = VideoReader(video_path, ctx=cpu(0), num_threads=1)
@@ -246,6 +258,17 @@ Based on your observations, select the best option that accurately addresses the
         return torch_imgs
 
     def read_frame(self, video_path, bound=None, fps=3):
+        """
+        Reads frames from a video directory, processes them, and returns a tensor of images.
+
+        Args:
+            video_path (str): Path to the directory containing video frames.
+            bound (tuple, optional): A tuple specifying the range of frames to read. Defaults to None.
+            fps (int, optional): Frames per second to sample from the video. Defaults to 3.
+
+        Returns:
+            torch.Tensor: A tensor containing the processed images.
+        """
         max_frame = len(os.listdir(video_path))
         images_group = list()
         frame_indices = self.get_index(bound, fps, max_frame, first_idx=1)  # frame_idx starts from 1
@@ -257,7 +280,7 @@ Based on your observations, select the best option that accurately addresses the
 
     def save_video_frames(self, imgs, video_name, frames):
 
-        frame_paths = self.frame_paths(video_name, frames)
+        frame_paths = self.frame_paths(video_name)
         flag = np.all([osp.exists(p) for p in frame_paths])
 
         if not flag:
@@ -285,6 +308,24 @@ Based on your observations, select the best option that accurately addresses the
         return question, answer
 
     def load_into_video_and_process(self, line):
+        """
+        Loads a video or image sequence, processes it, and returns the path to the processed video.
+
+        Args:
+            line (dict): A dictionary containing the following keys:
+                - 'prefix' (str): The prefix path to the video or image sequence.
+                - 'video' (str): The video file name or directory containing image frames.
+                - 'data_type' (str): The type of data, either 'gif', 'webm', or 'frame'.
+                - 'bound' (bool): Whether to process a subclip of the video.
+                - 'start' (float): The start time of the subclip (if 'bound' is True).
+                - 'end' (float): The end time of the subclip (if 'bound' is True).
+
+        Returns:
+            str: The path to the processed video file.
+
+        Raises:
+            ImportError: If MoviePy is not installed.
+        """
         try:
             from moviepy.editor import VideoFileClip, ImageSequenceClip
         except:
@@ -325,7 +366,7 @@ Based on your observations, select the best option that accurately addresses the
 
         return output_video_path
 
-    def save_video_into_images(self, line, num_frames):
+    def save_video_into_images(self, line):
         bound = None
         if line['bound']:
             bound = (
@@ -334,34 +375,81 @@ Based on your observations, select the best option that accurately addresses the
             )
         video_path = os.path.join(self.data_root, line['prefix'], line['video'])
         decord_method = self.decord_method[line['data_type']]
-        self.num_segments = num_frames if num_frames > 0 else self.nframe
+        self.num_segments = self.nframe
         torch_imgs = decord_method(video_path, bound)
         img_frame_paths = self.save_video_frames(torch_imgs, line['video'], self.num_segments)
         return img_frame_paths
 
-    def build_prompt(self, line, num_frames, video_llm, fps):
-        if fps > 0:
+    def build_prompt(self, line, video_llm):
+        """
+        Builds a prompt for a language model based on the provided data and settings.
+
+        Args:
+            line (int or dict): Either an integer index into the dataset or dictionary representing a single data point.
+            video_llm (bool): Whether to use a video-based language model or process individual frames as images.
+
+        Returns:
+            list: A list of dictionaries representing the constructed prompt, where each dictionary contains the type
+                    and value of the prompt element.
+
+        Raises:
+            ValueError: If the frame rate (fps) is greater than zero, indicating that this method
+                        is not compatible with MVBench's requirements.
+        """
+        # Ensure that the frame rate is not set, as MVBench does not support it
+        if self.fps > 0:
             raise ValueError('MVBench does not support fps setting, please transfer to MVBench_MP4!')
+
+        # If line is an integer, retrieve the corresponding data point from the d
         if isinstance(line, int):
             assert line < len(self)
             line = self.data.iloc[line]
 
+        # Generate the question and answer pair based on the current data point
         question, answer = self.qa_template(line)
+        # Initialize the prompt with a system message
         message = [dict(type='text', value=self.SYS, role='system')]
+        # Add the generated question to the prompt
         message.append(dict(type='text', value=question))
+        # Process the video data according to the specified mode
         if video_llm:
+            # Load the video and process it for the video-based langua
             new_video_path = self.load_into_video_and_process(line)
             message.append(dict(type='video', value=new_video_path))
         else:
-            img_frame_paths = self.save_video_into_images(line, num_frames)
+            # Save the video as individual image frames for processing
+            img_frame_paths = self.save_video_into_images(line)
             for im in img_frame_paths:
                 message.append(dict(type='image', value=im))
+        # Add instructions to the prompt
         message.append(dict(type='text', value='\nOnly give the best option.'))
+        # Indicate the start of the assistant's response
         message.append(dict(type='text', value='Best option:(', role='assistant'))
         return message
 
     @classmethod
     def evaluate(self, eval_file, **judge_kwargs):
+        """
+        Evaluates the given evaluation file and generates ratings based on different dimensions.
+
+        Args:
+            eval_file (str): Path to the evaluation file. The file should be in .xlsx format.
+            **judge_kwargs: Additional keyword arguments for the judge model.
+
+        Returns:
+            dict: A dictionary containing ratings for task type, tamper type, and task-tamper type.
+
+        Raises:
+            AssertionError: If the eval_file does not end with '.xlsx'.
+            Warning: If the OPENAI API is not working properly or the API key is not set,
+                     exact matching will be used for evaluation.
+
+        Notes:
+            - The function generates temporary files and score files based on the eval_file name.
+            - If the score file already exists, it will be used directly.
+            - The function processes the data, evaluates predictions, and calculates scores.
+            - Ratings are generated for different dimensions and saved to respective files.
+        """
 
         assert eval_file.endswith('.xlsx'), 'data file should be an xlsx file'
 
@@ -370,6 +458,8 @@ Based on your observations, select the best option that accurately addresses the
         tgt_tamper_type_file = eval_file.replace('.xlsx', '_tamper_type_rating.json')
         tgt_task_tamper_type_file = eval_file.replace('.xlsx', '_task_tamper_type_rating.json')
         score_file = eval_file.replace('.xlsx', '_score.xlsx')
+        score_metrics_file = eval_file.replace('.xlsx', '_score_f1.xlsx')
+        action_metrics_file = eval_file.replace('.xlsx', '_action_f1.xlsx')
 
         if not osp.exists(score_file):
             model = judge_kwargs.setdefault('model', 'chatgpt-0125')
@@ -425,6 +515,14 @@ Based on your observations, select the best option that accurately addresses the
             )
 
             dump(data, score_file)
+
+        model_name = score_file.split(f"_{self.BASENAME}")[0].split("/")[-1]
+
+        score_metrics = process_results(score_file, model_name)
+        dump(score_metrics, score_metrics_file)
+
+        action_metrics = aggregate_metrics_with_macro_average(score_file)
+        dump(action_metrics, action_metrics_file)
 
         rating_task_type = get_dimension_rating(score_file, 'task_type')
         dump(rating_task_type, tgt_task_type_file)
