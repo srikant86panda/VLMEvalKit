@@ -18,24 +18,474 @@ class ImageVQADataset(ImageBaseDataset):
         'OCRVQA_TEST': 'https://opencompass.openxlab.space/utils/VLMEval/OCRVQA_TEST.tsv',
         'OCRVQA_TESTCORE': 'https://opencompass.openxlab.space/utils/VLMEval/OCRVQA_TESTCORE.tsv',
         'TextVQA_VAL': 'https://opencompass.openxlab.space/utils/VLMEval/TextVQA_VAL.tsv',
+        'TextVQA_VAL_sample' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_2x1_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_2x1_row1_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_2x1_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_2x1_row2_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_1x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_1x2_row1_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_1x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_1x2_row1_col2.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_2x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_2x2_row1_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_2x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_2x2_row1_col2.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_2x2_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_2x2_row2_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_2x2_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_2x2_row2_col2.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row1_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row1_col2.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row1_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row1_col3.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row2_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row2_col2.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row2_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VA_sample_grid_3x3_row2_col3.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row3_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row3_col1.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row3_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row3_col2.tsv'
+        ),
+        'TextVQA_VAL_sample_grid_3x3_row3_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/TextVQA_VAL/TextVQA_VAL_sample_grid_3x3_row3_col3.tsv'
+        ),
         'DocVQA_VAL': 'https://opencompass.openxlab.space/utils/VLMEval/DocVQA_VAL.tsv',
         'DocVQA_TEST': 'https://opencompass.openxlab.space/utils/VLMEval/DocVQA_TEST.tsv',
+        'DocVQA_TEST_sample' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_2x1_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_2x1_row1_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_2x1_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_2x1_row2_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_1x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_1x2_row1_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_1x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_1x2_row1_col2.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_2x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_2x2_row1_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_2x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_2x2_row1_col2.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_2x2_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_2x2_row2_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_2x2_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_2x2_row2_col2.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row1_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row1_col2.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row1_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row1_col3.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row2_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row2_col2.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row2_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row2_col3.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row3_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row3_col1.tsv'
+        ),
+        'DocVQA_TEST_sample_grid_3x3_row3_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row3_col2.tsv'),
+        'DocVQA_TEST_sample_grid_3x3_row3_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_3x3_row3_col3.tsv'
+        ),
         'InfoVQA_VAL': 'https://opencompass.openxlab.space/utils/VLMEval/InfoVQA_VAL.tsv',
         'InfoVQA_TEST': 'https://opencompass.openxlab.space/utils/VLMEval/InfoVQA_TEST.tsv',
+        'InfoVQA_TEST_sample' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_2x1_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_2x1_row1_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_2x1_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_2x1_row2_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_1x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_1x2_row1_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_1x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_1x2_row1_col2.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_2x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_2x2_row1_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_2x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_2x2_row1_col2.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_2x2_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/DocVQA_TEST/DocVQA_TEST_sample_grid_2x2_row2_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_2x2_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_2x2_row2_col2.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row1_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row1_col2.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row1_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row1_col3.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row2_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row2_col2.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row2_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row2_col3.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row3_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row3_col1.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row3_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row3_col2.tsv'
+        ),
+        'InfoVQA_TEST_sample_grid_3x3_row3_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/InfoVQA_TEST/InfoVQA_TEST_sample_grid_3x3_row3_col3.tsv'
+        ),
         'ChartQA_TEST': 'https://opencompass.openxlab.space/utils/VLMEval/ChartQA_TEST.tsv',
+        'ChartQA_TEST_sample' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_2x1_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_2x1_row1_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_2x1_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_2x1_row2_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_1x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_1x2_row1_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_1x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_1x2_row1_col2.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_2x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_2x2_row1_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_2x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_2x2_row1_col2.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_2x2_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_2x2_row2_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_2x2_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_2x2_row2_col2.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row1_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row1_col2.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row1_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row1_col3.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row2_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row2_col2.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row2_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row2_col3.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row3_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row3_col1.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row3_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row3_col2.tsv'
+        ),
+        'ChartQA_TEST_sample_grid_3x3_row3_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/ChartQA_TEST/ChartQA_TEST_sample_grid_3x3_row3_col3.tsv'
+        ),
         'GQA_TestDev_Balanced': 'https://opencompass.openxlab.space/utils/VLMEval/GQA_TestDev_Balanced.tsv',
+        'GQA_TestDev_Balanced_sample' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_2x1_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_2x1_row1_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_2x1_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_2x1_row2_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_1x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_1x2_row1_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_1x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_1x2_row1_col2.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_2x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_2x2_row1_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_2x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_2x2_row1_col2.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_2x2_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_2x2_row2_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_2x2_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_2x2_row2_col2.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row1_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row1_col2.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row1_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row1_col3.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row2_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row2_col2.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row2_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row2_col3.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row3_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row3_col1.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row3_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row3_col2.tsv'
+        ),
+        'GQA_TestDev_Balanced_sample_grid_3x3_row3_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/GQA_TestDev_Balanced/GQA_TestDev_Balanced_sample_grid_3x3_row3_col3.tsv'
+        ),
     }
 
     DATASET_MD5 = {
         'OCRVQA_TEST': 'ca46a6d74b403e9d6c0b670f6fc00db9',
         'OCRVQA_TESTCORE': 'c5239fe77db8bdc1f2ad8e55e0d1fe97',
         'TextVQA_VAL': 'b233b31f551bbf4056f2f955da3a92cd',
+        'TextVQA_VAL_sample': 'b233b31f551bbf4056f2f955da3a92cd',
+        'TextVQA_VAL_sample_grid_2x1_row1_col1': '2a0bac51e1aac4bdfa5207032f72036f',
+        'TextVQA_VAL_sample_grid_2x1_row2_col1': '9fefb1e58170b09488de68f902761869',
+        'TextVQA_VAL_sample_grid_1x2_row1_col1': 'c0c88a4266081366b5d8ac7be99f283a',
+        'TextVQA_VAL_sample_grid_1x2_row1_col2': 'b5327b031ba31dbccf18a1871d69be6e',
+        'TextVQA_VAL_sample_grid_2x2_row1_col1': '5abdb5775fd25821d052559cd069fed5',
+        'TextVQA_VAL_sample_grid_2x2_row1_col2': 'a109216f18e34073897e50433f5a4e6d',
+        'TextVQA_VAL_sample_grid_2x2_row2_col1': 'bb54a5e6f024374edf79312b4d2cb171',
+        'TextVQA_VAL_sample_grid_2x2_row2_col2': 'c86cce40003e542b111f53a37d006701',
+        'TextVQA_VAL_sample_grid_3x3_row1_col1': 'f85ea009c014d0f1b15d4f6a3703676e',
+        'TextVQA_VAL_sample_grid_3x3_row1_col2': '34adca8fde52bd4c1d0edaea03f9b515',
+        'TextVQA_VAL_sample_grid_3x3_row1_col3': '268224156a086e5e78b9d6d3b8b414c2',
+        'TextVQA_VAL_sample_grid_3x3_row2_col1': '91b0c14d4c28cae559fbc0c58b6c6cd0',
+        'TextVQA_VAL_sample_grid_3x3_row2_col2': 'dfd94106879e871a354f00edd3720b1f',
+        'TextVQA_VAL_sample_grid_3x3_row2_col3': '9bff6f07014189fb50591ea632ddf1f8',
+        'TextVQA_VAL_sample_grid_3x3_row3_col1': '04e7724de2aca987f765cfb601990dae',
+        'TextVQA_VAL_sample_grid_3x3_row3_col2': 'bffad934922d3143ee4c94e16eca768a',
+        'TextVQA_VAL_sample_grid_3x3_row3_col3': 'b084ac7b80071509d78b154899489804',
         'DocVQA_VAL': 'd5ee77e1926ff10690d469c56b73eabf',
         'DocVQA_TEST': '6a2f28cac26ef2d3447374e8c6f6c8e9',
+        'DocVQA_TEST_sample': 'cc094c957e24c0e8b0565c2cfcd80d80',
+        'DocVQA_TEST_sample_grid_2x1_row1_col1': 'b2aa87eca0a13843e3a2822b3bd42148',
+        'DocVQA_TEST_sample_grid_2x1_row2_col1': '9f0dd6fd0ae0ae513cc068de894fccf6',
+        'DocVQA_TEST_sample_grid_1x2_row1_col1': '70da32da601f71af63ac97e7cff16ee7',
+        'DocVQA_TEST_sample_grid_1x2_row1_col2': 'ac868d7b5667a035e6d5404f1cc923d8',
+        'DocVQA_TEST_sample_grid_2x2_row1_col1': 'd074af4ad182b2ecc280b541c2dd04cf',
+        'DocVQA_TEST_sample_grid_2x2_row1_col2': 'a020ed0be5a193f4094c7e18a420c286',
+        'DocVQA_TEST_sample_grid_2x2_row2_col1': '5d762e690db778f7a5aedc8f31458ac6',
+        'DocVQA_TEST_sample_grid_2x2_row2_col2': 'c8dc68377a786b62f5ead5d7609f8c79',
+        'DocVQA_TEST_sample_grid_3x3_row1_col1': '675537dee2e5d35bd4b58b2a0b48ca53',
+        'DocVQA_TEST_sample_grid_3x3_row1_col2': '9c2eaebfdb7dbe90c0a67f7988ee9911',
+        'DocVQA_TEST_sample_grid_3x3_row1_col3': '51fb625a100887ba759b32b231104c4f',
+        'DocVQA_TEST_sample_grid_3x3_row2_col1': '68959da659925f26e2fb0f7f70376f75',
+        'DocVQA_TEST_sample_grid_3x3_row2_col2': '6bef80e59d000673aacfebdca700f085',
+        'DocVQA_TEST_sample_grid_3x3_row2_col3': '15b16aa9ce57940ae87854879673f467',
+        'DocVQA_TEST_sample_grid_3x3_row3_col1': '404b127ad151f1ba068d2cb4be4c2837',
+        'DocVQA_TEST_sample_grid_3x3_row3_col2': '5357889720e653596b2a20428219af95',
+        'DocVQA_TEST_sample_grid_3x3_row3_col3': 'ef213fbda17d1447892e791188b8f5b9',
+        'GQA_TestDev_Balanced': '99b62f22e224d9b2f32dcbe41359d1c9',
         'InfoVQA_VAL': '2342e9c225222f0ef4dec545ebb126fe',
         'InfoVQA_TEST': 'df535bf51b88dc9718252c34131a6227',
+        'InfoVQA_TEST_sample': '5be64b9acda461ee4f51787873abfca5',
+        'InfoVQA_TEST_sample_grid_2x1_row1_col1': 'a8381cadb6d8a89c7e900ac5388cd847',
+        'InfoVQA_TEST_sample_grid_2x1_row2_col1': '01e024f38125f4cfc40808fd5c573eda',
+        'InfoVQA_TEST_sample_grid_1x2_row1_col1': '5b4a0ef2057fdcb6d887f442321755d5',
+        'InfoVQA_TEST_sample_grid_1x2_row1_col2': 'ade0f02548b7e7efe1b4413b8e7b3d16',
+        'InfoVQA_TEST_sample_grid_2x2_row1_col1': '319b13548ff1fae752d7ca2e3d4d5b21',
+        'InfoVQA_TEST_sample_grid_2x2_row1_col2': 'be78af29e60974b5e6c3d9fdfd4f3ed4',
+        'InfoVQA_TEST_sample_grid_2x2_row2_col1': 'de1b721c45c6e560a0eb300233378c61',
+        'InfoVQA_TEST_sample_grid_2x2_row2_col2': 'b3149606169281a4eee22769d000e9dd',
+        'InfoVQA_TEST_sample_grid_3x3_row1_col1': '7dae068d26402f150d2bdca51cab00e7',
+        'InfoVQA_TEST_sample_grid_3x3_row1_col2': 'd0333ca65ab0998cbf19d793cdf80958',
+        'InfoVQA_TEST_sample_grid_3x3_row1_col3': 'cd088a0d6bab5910b66f3803603b6ea5',
+        'InfoVQA_TEST_sample_grid_3x3_row2_col1': '85cf79416a409db4089de59d32937b19',
+        'InfoVQA_TEST_sample_grid_3x3_row2_col2': '76bbcadd4723d413185263386f7d4567',
+        'InfoVQA_TEST_sample_grid_3x3_row2_col3': 'e8a3878b90315c449ce32347c874e88e',
+        'InfoVQA_TEST_sample_grid_3x3_row3_col1': '01da379e8f6f79f0651b747576da0e18',
+        'InfoVQA_TEST_sample_grid_3x3_row3_col2': 'd10682b8327ef84e1c35b00ef57e4507',
+        'InfoVQA_TEST_sample_grid_3x3_row3_col3': '21f0c44074aba274fe724e60e95531f1',     
         'ChartQA_TEST': 'c902e0aa9be5582a7aad6dcf52734b42',
+        'ChartQA_TEST_sample': '619a46a0cd470efb884ab08cddde5211',
+        'ChartQA_TEST_sample_grid_2x1_row1_col1': '4f45148f880e354b4db696a894db28da',
+        'ChartQA_TEST_sample_grid_2x1_row2_col1': '12b835d1edf3e934107ea01f0ca651af',
+        'ChartQA_TEST_sample_grid_1x2_row1_col1': '544c59dcba4cfdcb2ebb4ce4c403992e',
+        'ChartQA_TEST_sample_grid_1x2_row1_col2': '73597e301be0410bed987d2aba95a588',
+        'ChartQA_TEST_sample_grid_2x2_row1_col1': '61e263cc909b249ee28187d6fe48b7eb',
+        'ChartQA_TEST_sample_grid_2x2_row1_col2': 'bef1849bed521c0901a738a41094530f',
+        'ChartQA_TEST_sample_grid_2x2_row2_col1': 'a5b58f28aa24d6b4ccb9658be56e56e9',
+        'ChartQA_TEST_sample_grid_2x2_row2_col2': 'eb73e7a57484c6afcf782dbc9604222f',
+        'ChartQA_TEST_sample_grid_3x3_row1_col1': 'a944ab26fb2d5b4524e327790da8d622',
+        'ChartQA_TEST_sample_grid_3x3_row1_col2': '26cf2d035cdba867ad61b483d06416e6',
+        'ChartQA_TEST_sample_grid_3x3_row1_col3': '55d1e7b645977dcedc48a41776e7f4b0',
+        'ChartQA_TEST_sample_grid_3x3_row2_col1': '84ebfb5edddb2e504bb98012dd351424',
+        'ChartQA_TEST_sample_grid_3x3_row2_col2': '0e695bb9fafb44d58ec3eefe09f3689e',
+        'ChartQA_TEST_sample_grid_3x3_row2_col3': 'bf35771332c8f52f31b32d96d35d68b4',
+        'ChartQA_TEST_sample_grid_3x3_row3_col1': '5632efb861a420dfafc646c81ab53c0c',
+        'ChartQA_TEST_sample_grid_3x3_row3_col2': 'ed84540d5fb2cebd3b8d4b07ef5d7e9e',
+        'ChartQA_TEST_sample_grid_3x3_row3_col3': '89f5ededbd271ab92fc109eeda8e1686',
         'GQA_TestDev_Balanced': '99b62f22e224d9b2f32dcbe41359d1c9',
+        'GQA_TestDev_Balanced_sample': '86cd26b757ad09f1f79f4657f47263a7',
+        'GQA_TestDev_Balanced_sample_grid_2x1_row1_col1': '8f38888699e6733da2a8da3a8c097433',
+        'GQA_TestDev_Balanced_sample_grid_2x1_row2_col1': 'a8f46a2d10a4b5d79814fb69cc982fc4',
+        'GQA_TestDev_Balanced_sample_grid_1x2_row1_col1': '81027698af1b9fe330b3733bcf0a0c5c',
+        'GQA_TestDev_Balanced_sample_grid_1x2_row1_col2': 'c4933d0f16c3ff09a0453afc542787ab',
+        'GQA_TestDev_Balanced_sample_grid_2x2_row1_col1': '6199baf7a1e3c6c3197338b35bebd18e',
+        'GQA_TestDev_Balanced_sample_grid_2x2_row1_col2': 'c5c11181fe16956106bd1efd22354aab',
+        'GQA_TestDev_Balanced_sample_grid_2x2_row2_col1': 'd074e8f7f69f6a02925d1c86f34e9e95',
+        'GQA_TestDev_Balanced_sample_grid_2x2_row2_col2': '45734af86e26b0a96935ba937d3ca089',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row1_col1': 'a492653cb6a219685c5c0398bc3bcf21',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row1_col2': 'bb1e4ba24219adb5617f63c297726f9e',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row1_col3': '32439b9a8ba5693489fefb109452a5c9',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row2_col1': '45dd829112e457c9cf36012813950974',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row2_col2': 'd6123ac799b48decf617042fcc4ed88e',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row2_col3': 'bfe32db17fdd1979ebd41d5e16c478f1',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row3_col1': '2cb7f541cea4ba090e066909dee7fbb7',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row3_col2': '4aaf88ace6e6b5146cc77b5360f23e18',
+        'GQA_TestDev_Balanced_sample_grid_3x3_row3_col3': 'd760c58b1876c4b243de07b4d2bcec57', 
     }
 
     def build_prompt(self, line):
@@ -100,10 +550,97 @@ class ImageVQADataset(ImageBaseDataset):
 class VizWiz(ImageBaseDataset):
     TYPE = 'VQA'
     DATASET_URL = {
-        'VizWiz': 'https://opencompass.openxlab.space/utils/VLMEval/VizWiz.tsv'
+        'VizWiz': 'https://opencompass.openxlab.space/utils/VLMEval/VizWiz.tsv',
+        'VizWiz_sample' : 'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/resolve/main/VizWiz/VizWiz_sample.tsv',
+        'VizWiz_sample_grid_2x1_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_2x1_row1_col1.tsv'
+        ),
+        'VizWiz_sample_grid_2x1_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_2x1_row2_col1.tsv'
+        ),
+        'VizWiz_sample_grid_1x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_1x2_row1_col1.tsv'
+        ),
+        'VizWiz_sample_grid_1x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_1x2_row1_col2.tsv'
+        ),
+        'VizWiz_sample_grid_2x2_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_2x2_row1_col1.tsv'
+        ),
+        'VizWiz_sample_grid_2x2_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_2x2_row1_col2.tsv'
+        ),
+        'VizWiz_sample_grid_2x2_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_2x2_row2_col1.tsv'
+        ),
+        'VizWiz_sample_grid_2x2_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_2x2_row2_col2.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row1_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row1_col1.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row1_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row1_col2.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row1_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row1_col3.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row2_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row2_col1.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row2_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row2_col2.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row2_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row2_col3.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row3_col1' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row3_col1.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row3_col2' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row3_col2.tsv'
+        ),
+        'VizWiz_sample_grid_3x3_row3_col3' : (
+            'https://huggingface.co/datasets/hiteshpatel945/VLMEVAL/'
+            'resolve/main/VizWiz/VizWiz_sample_grid_3x3_row3_col3.tsv'
+        ),
     }
     DATASET_MD5 = {
-        'VizWiz': 'fa4ac4164467563ed2fac6eac6631bd0'
+        'VizWiz': 'fa4ac4164467563ed2fac6eac6631bd0',
+        'VizWiz_sample': 'fa4ac4164467563ed2fac6eac6631bd0',
+        'VizWiz_sample_grid_2x1_row1_col1': '8e5142a4b17d8527862b8bb6aa328b0e',
+        'VizWiz_sample_grid_2x1_row2_col1': 'bc8b5a59bd5f2f0ac9a7d0cb9062fe98',
+        'VizWiz_sample_grid_1x2_row1_col1': 'd2cfb590c3ee7f596e7a76348e13ccb2',
+        'VizWiz_sample_grid_1x2_row1_col2': '1f6322e8d985ca2bc5777516faa32554',
+        'VizWiz_sample_grid_2x2_row1_col1': '10eafa6f18ff3c58c9f5908e06bc0a46',
+        'VizWiz_sample_grid_2x2_row1_col2': '15be59307ab2f1fa9e875eeebfe8911c',
+        'VizWiz_sample_grid_2x2_row2_col1': '9db7d90a414afca44a21a30b6a6b3376',
+        'VizWiz_sample_grid_2x2_row2_col2': '63c1378558d1d82066fc44d3057ce056',
+        'VizWiz_sample_grid_3x3_row1_col1': '24e5bb850cccc5583fc5ccef8cb5d212',
+        'VizWiz_sample_grid_3x3_row1_col2': 'a3253ad6217d958e87d5c68a29f2dc2a',
+        'VizWiz_sample_grid_3x3_row1_col3': '6a1459cebf5b3d7c9f59c0a54308d9ca',
+        'VizWiz_sample_grid_3x3_row2_col1': '163fcca3e0a8f184d4eec5f1a1c0e6bd',
+        'VizWiz_sample_grid_3x3_row2_col2': '7e77e7d654bf30d164041b3977c74b94',
+        'VizWiz_sample_grid_3x3_row2_col3': '38af02bef808382fb05be4dc79c7bc8b',
+        'VizWiz_sample_grid_3x3_row3_col1': '33c9f2f612344b8be67a9d7d7814ec02',
+        'VizWiz_sample_grid_3x3_row3_col2': 'c52bc2de7e952bfecc0e7343dd47b321',
+        'VizWiz_sample_grid_3x3_row3_col3': '204de2d2a5e5d5d3d24c55e83874f78d',
     }
 
     @classmethod
