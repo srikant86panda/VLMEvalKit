@@ -9,9 +9,6 @@ DATASETS=(
   "MMStar_sample" 
   "MMMU_TEST_sample" 
   "RealWorldQA" 
-  "MMBench_TEST_EN_V11_sample" 
-  "GQA_TestDev_Balanced_sample" 
-  "DocVQA_TEST_sample" 
 )
 
 # Default model
