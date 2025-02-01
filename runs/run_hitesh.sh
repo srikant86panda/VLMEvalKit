@@ -10,7 +10,7 @@ MODELS=("llava-onevision-qwen2-0.5b-ov-hf")
 for DATA in "${DATASETS[@]}"; do
   for MODEL in "${MODELS[@]}"; do
     echo "Running with dataset: $DATA and model: $MODEL"
-    python /mnt/sharedrun.py --data ${DATA} \
+    python run.py --data ${DATA} \
     ${DATA}_grid_2x1_row1_col1 \
     ${DATA}_grid_2x1_row2_col1 \
     ${DATA}_grid_1x2_row1_col1 \

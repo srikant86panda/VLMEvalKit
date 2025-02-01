@@ -36,7 +36,7 @@ DATASETS=(
 for DATA in "${DATASETS[@]}"; do
     echo "Running with dataset: $DATA and model: $MODEL"
 
-    python /mnt/sharedrun.py --data "${DATA}" \
+    python run.py --data "${DATA}" \
       "${DATA}_grid_2x1_row1_col1" \
       "${DATA}_grid_2x1_row2_col1" \
       "${DATA}_grid_1x2_row1_col1" \
