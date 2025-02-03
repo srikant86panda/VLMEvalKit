@@ -78,7 +78,13 @@ class molmo(BaseModel):
         elif dataset in ['AI2D_TEST', 'AI2D_TEST_NO_MASK']:
             prompt = self.build_prompt_ai2d(line)
         elif dataset is not None and listinstr(list(DATASET_PROMPTS.keys()), dataset):
-            prefix = DATASET_PROMPTS[dataset]  # rest of supervised datasets are in VQA format
+            if dataset in DATASET_PROMPTS:
+                prefix = DATASET_PROMPTS[dataset]  # rest of supervised datasets are in VQA format
+            else :
+                for key, prompt in DATASET_PROMPTS.items():
+                if dataset.startswith(key):
+                    print(f"Key being used for {dataset} is {key}")
+                    prefix = DATASET_PROMPTS[key]
             prompt = self.build_prompt_vqa(line, prefix)
         elif dataset is not None and listinstr(['MCQ'], DATASET_TYPE(dataset)):
             prompt = self.build_prompt_multiple_choice(line)
