@@ -5,20 +5,23 @@ from .image_caption import ImageCaptionDataset
 from .image_yorn import ImageYORNDataset
 from .image_mcq import (
     ImageMCQDataset, MMMUDataset, CustomMCQDataset, MUIRDataset, GMAIMMBenchDataset, MMERealWorld, HRBenchDataset,
-    NaturalBenchDataset
+    NaturalBenchDataset, WeMath, MMMUProDataset
 )
 from .image_mt import MMDUDataset
 from .image_vqa import (
     ImageVQADataset, MathVision, OCRBench, MathVista, LLaVABench, MMVet, MTVQADataset, TableVQABench,
-    CustomVQADataset, CRPE, MathVerse, OlympiadBench, QSpatial, VizWiz, MMNIAH
+    CustomVQADataset, CRPE, MathVerse, OlympiadBench, QSpatial, VizWiz, MMNIAH, LogicVista
 )
 
+from .image_ccocr import CCOCRDataset
+from .image_shortqa import ImageShortQADataset
 from .text_mcq import CustomTextMCQDataset, TextMCQDataset
 
 from .vcr import VCRDataset
 from .mmlongbench import MMLongBench
 from .dude import DUDE
 from .slidevqa import SlideVQA
+from .vl_rewardbench import VLRewardBench
 
 from .mmbench_video import MMBenchVideo
 from .videomme import VideoMME
@@ -30,13 +33,18 @@ from .tempcompass import TempCompass, TempCompass_Captioning, TempCompass_MCQ, T
 from .longvideobench import LongVideoBench
 from .video_concat_dataset import ConcatVideoDataset
 from .mmgenbench import MMGenBench
+from .cgbench import CGBench_MCQ_Grounding_Mini, CGBench_OpenEnded_Mini, CGBench_MCQ_Grounding, CGBench_OpenEnded
+from .worldsense import WorldSense
 
 from .miabench import MIABench
 from .cmmmu import CMMMU
 from .wildvision import WildVision
 from .mmmath import MMMath
 from .dynamath import Dynamath
+from .creation import CreationMMBenchDataset
+from .mmalignbench import MMAlignBench
 from .utils import *
+from .video_dataset_config import *
 from ..smp import *
 
 
@@ -49,7 +57,7 @@ class ConcatDataset(ImageBaseDataset):
         'MTL_MMBench_DEV': [
             'MMBench_dev_ar', 'MMBench_dev_cn', 'MMBench_dev_en',
             'MMBench_dev_pt', 'MMBench_dev_ru', 'MMBench_dev_tr'
-        ]
+        ],
     }
 
     def __init__(self, dataset):
@@ -129,16 +137,18 @@ class ConcatDataset(ImageBaseDataset):
 IMAGE_DATASET = [
     ImageCaptionDataset, ImageYORNDataset, ImageMCQDataset, ImageVQADataset, MathVision,
     MMMUDataset, OCRBench, MathVista, LLaVABench, MMVet, MTVQADataset, TableVQABench,
-    MMLongBench, VCRDataset, MMDUDataset, DUDE, SlideVQA, MUIRDataset,
+    MMLongBench, VCRDataset, MMDUDataset, DUDE, SlideVQA, MUIRDataset, CCOCRDataset,
     GMAIMMBenchDataset, MMERealWorld, HRBenchDataset, CRPE, MathVerse, NaturalBenchDataset,
     MIABench, OlympiadBench, WildVision, MMMath, QSpatial, Dynamath, MMGenBench, VizWiz, MMNIAH,
-    CMMMU
+    CMMMU, VLRewardBench, WeMath, LogicVista, MMMUProDataset, CreationMMBenchDataset,
+    ImageShortQADataset, MMAlignBench
 ]
 
 VIDEO_DATASET = [
     MMBenchVideo, VideoMME, MVBench, MVBench_MP4, MVTamperBench, LongVideoBench,
     MLVU, MLVU_MCQ, MLVU_OpenEnded,
-    TempCompass, TempCompass_MCQ, TempCompass_Captioning, TempCompass_YorN
+    TempCompass, TempCompass_MCQ, TempCompass_Captioning, TempCompass_YorN,
+    CGBench_MCQ_Grounding_Mini, CGBench_OpenEnded_Mini, CGBench_MCQ_Grounding, CGBench_OpenEnded, WorldSense
 ]
 
 TEXT_DATASET = [
@@ -200,7 +210,9 @@ def DATASET_MODALITY(dataset, *, default: str = 'IMAGE') -> str:
 
 def build_dataset(dataset_name, **kwargs):
     for cls in DATASET_CLASSES:
-        if dataset_name in cls.supported_datasets():
+        if dataset_name in supported_video_datasets:
+            return supported_video_datasets[dataset_name](**kwargs)
+        elif dataset_name in cls.supported_datasets():
             return cls(dataset=dataset_name, **kwargs)
 
     warnings.warn(f'Dataset {dataset_name} is not officially supported. ')

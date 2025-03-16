@@ -5,13 +5,14 @@ torch.manual_seed(1234)
 from .aria import Aria
 from .base import BaseModel
 from .cogvlm import CogVlm, GLM4v
-from .emu import Emu
+from .emu import Emu, Emu3_chat, Emu3_gen
 from .eagle_x import Eagle
 from .idefics import IDEFICS, IDEFICS2
 from .instructblip import InstructBLIP
 from .kosmos import Kosmos2
 from .llava import LLaVA, LLaVA_Next, LLaVA_XTuner, LLaVA_Next2, LLaVA_OneVision, LLaVA_OneVision_HF
-from .minicpm_v import MiniCPM_V, MiniCPM_Llama3_V, MiniCPM_V_2_6
+from .vita import VITA, VITAQwen2
+from .minicpm_v import MiniCPM_V, MiniCPM_Llama3_V, MiniCPM_V_2_6, MiniCPM_o_2_6
 from .minigpt4 import MiniGPT4
 from .mmalaya import MMAlaya, MMAlaya2
 from .monkey import Monkey, MonkeyChat
@@ -29,6 +30,7 @@ from .xcomposer import ShareCaptioner, XComposer, XComposer2, XComposer2_4KHD, X
 from .yi_vl import Yi_VL
 from .internvl import InternVLChat
 from .deepseek_vl import DeepSeekVL
+from .deepseek_vl2 import DeepSeekVL2
 from .janus import Janus
 from .mgm import Mini_Gemini
 from .bunnyllama3 import BunnyLLama3
@@ -41,7 +43,7 @@ from .cambrian import Cambrian
 from .chameleon import Chameleon
 from .video_llm import VideoLLaVA, VideoLLaVA_HF, Chatunivi, VideoChatGPT, LLaMAVID, VideoChat2_HD, PLLaVA
 from .vila import VILA
-from .ovis import Ovis, Ovis1_6, Ovis1_6_Plus
+from .ovis import Ovis, Ovis1_6, Ovis1_6_Plus, Ovis2
 from .mantis import Mantis
 from .mixsense import LLama3Mixsense
 from .parrot import Parrot
@@ -60,3 +62,7 @@ from .h2ovl_mississippi import H2OVLChat
 from .falcon_vlm import Falcon2VLM
 from .smolvlm import SmolVLM
 from .sail_vl import SailVL
+from .valley import ValleyEagleChat
+from .ross import Ross
+from .ola import Ola
+from .ursa import UrsaChat
