@@ -5,7 +5,7 @@ torch.manual_seed(1234)
 from .aria import Aria
 from .base import BaseModel
 from .cogvlm import CogVlm, GLM4v
-from .emu import Emu
+from .emu import Emu, Emu3_chat, Emu3_gen
 from .eagle_x import Eagle
 from .idefics import IDEFICS, IDEFICS2
 from .instructblip import InstructBLIP
@@ -43,7 +43,7 @@ from .cambrian import Cambrian
 from .chameleon import Chameleon
 from .video_llm import VideoLLaVA, VideoLLaVA_HF, Chatunivi, VideoChatGPT, LLaMAVID, VideoChat2_HD, PLLaVA
 from .vila import VILA
-from .ovis import Ovis, Ovis1_6, Ovis1_6_Plus
+from .ovis import Ovis, Ovis1_6, Ovis1_6_Plus, Ovis2
 from .mantis import Mantis
 from .mixsense import LLama3Mixsense
 from .parrot import Parrot
@@ -64,3 +64,5 @@ from .smolvlm import SmolVLM
 from .sail_vl import SailVL
 from .valley import ValleyEagleChat
 from .ross import Ross
+from .ola import Ola
+from .ursa import UrsaChat
